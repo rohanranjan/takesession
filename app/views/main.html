@@ -1,0 +1,109 @@
+<div class="container" ng-controller="MainCtrl">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-login">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6" ng-repeat="tab in tabs">
+                                <a ng-class="{active:isActiveTab(tab.url)}" 
+                ng-click="onClickTab(tab)" id="login-form-link" style="cursor: pointer;">{{tab.title}}</a>
+                            </div>
+                        </div>
+                        {{errormessage}}
+                        <hr>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                
+                                    <div id="mainView">
+                                        <div ng-include="currentTab"></div>
+                                    </div>
+
+                            <script type="text/ng-template" id="one.tpl.html">
+                                <form name="userForm" ng-submit="submitForm()" style="display: block;" novalidate>
+                                    
+                                    <div class="form-group" ng-class="{'has-error': userForm.username.$invalid && !userForm.username.$pristine}">
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" ng-model="user.username" required>
+                                        <p ng-show="userForm.username.$invalid && !userForm.username.$pristine" class="help-block">Your username is required.</p>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error': userForm.password.$invalid && !userForm.password.$pristine}">
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" value="" ng-model="user.password" required ng-minlength="3" ng-maxlength="8">
+                                        <p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">Your password is required.</p>
+                                        <p ng-show="userForm.password.$error.minlength" class="help-block">Password is too short.</p>
+                                        <p ng-show="userForm.password.$error.maxlength" class="help-block">Password is too long.</p>
+                                    </div>
+
+                                    <div class="form-group text-center" >
+                                        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                        <label for="remember"> Remember Me</label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In" ng-disabled="userForm.$invalid">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="text-center">
+                                                    <a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </script>
+                            <script type="text/ng-template" id="two.tpl.html">
+                                <form id="register-form" style="display: block;" name="registerForm">
+                                    
+                                    <div class="form-group" ng-class="{'has-error':registerForm.username.$invalid && !registerForm.username.$pristine}">
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required ng-model="register.username">
+                                        <p ng-show="registerForm.username.$invalid && !registerForm.username.$pristine" class="help-block">Your username is required.</p>
+                                    </div>
+
+
+                                    <div class="form-group" ng-class="{'has-error':registerForm.registeremail.$invalid && !registerForm.registeremail.$pristine}">
+                                        <input type="email" name="registeremail" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" required ng-model="register.registeremail">
+                                        <p ng-show="registerForm.registeremail.$invalid && !registerForm.registeremail.$pristine" class="help-block">Enter a valid Email.</p>
+                                    </div>
+
+
+                                    <div class="form-group" ng-class="{'has-error':registerForm.registerpassword.$invalid && !registerForm.registerpassword.$pristine}">
+                                        
+                                        <input type="password" name="registerpassword" id="password" tabindex="2" class="form-control" placeholder="Password" value="" ng-model="register.registerpassword" required ng-minlength="3" ng-maxlength="8">
+
+                                        <p ng-show="registerForm.registerpassword.$invalid && !registerForm.registerpassword.$pristine" class="help-block">Enter a valid Password.</p>
+                                    <p ng-show="registerForm.registerpassword.$error.minlength" class="help-block">Password is too short.</p>
+                    <p ng-show="registerForm.registerpassword.$error.maxlength" class="help-block">Password is too long.</p>
+                                    </div>
+
+
+                                    <div class="form-group" ng-class="{'has-error':registerForm.confirmpassword.$invalid && !registerForm.confirmpassword.$pristine}">
+                                        <input type="password" name="confirmpassword" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" ng-model="register.confirmpassword" required ng-minlength="3" ng-maxlength="8">
+                            <p ng-show="registerForm.confirmpassword.$error.minlength" class="help-block">Password is too short.</p>
+                    <p ng-show="registerForm.confirmpassword.$error.maxlength" class="help-block">Password is too long.</p>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now" ng-disabled="registerForm.$invalid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
